@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VRChat 改模资源中心 · 视频/文章/Booth 素体大全</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='15'>🛠️</text></svg>">
+<style>
+  :root{
+    --bg:#0d0f14;--panel:#161922;--panel2:#1d212c;--border:#2a3040;
+    --text:#e7eaf0;--muted:#8b94a7;--accent:#7c4dff;--accent2:#22d3ee;--pink:#ff5fa2;
+    --ok:#34d399;--warn:#fbbf24;--danger:#f87171;--code:#0a0c11;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+  a{color:var(--accent2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .layout{display:flex}
+  nav{width:230px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);position:sticky;top:0;height:100vh;overflow-y:auto;padding:18px 0}
+  nav h1{font-size:16px;margin:0 18px 2px;color:#fff}
+  nav .sub{font-size:11px;color:var(--muted);margin:0 18px 14px}
+  nav a{display:block;color:var(--muted);padding:6px 18px;font-size:13.5px;border-left:3px solid transparent}
+  nav a:hover{color:#fff;background:var(--panel2);text-decoration:none}
+  nav a.active{color:#fff;border-left-color:var(--accent);background:var(--panel2)}
+  nav .group{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:#566;margin:16px 18px 5px;font-weight:700}
+  main{flex:1;max-width:1120px;margin:0 auto;padding:26px 38px 120px;width:100%}
+  section{margin-bottom:50px;scroll-margin-top:16px}
+  h2{font-size:24px;border-bottom:2px solid var(--border);padding-bottom:9px;margin-top:0}
+  h2 .n{font-size:14px;color:var(--muted);font-weight:400;margin-left:8px}
+  h3{font-size:17px;color:#fff;margin-top:26px}
+  code{background:var(--code);padding:2px 6px;border-radius:4px;font-family:Consolas,monospace;font-size:13px;color:#ffd479}
+  .hero{background:radial-gradient(1200px 400px at 18% -10%,rgba(124,77,255,.35),transparent),radial-gradient(900px 400px at 92% 0%,rgba(255,95,162,.22),transparent),var(--panel);border:1px solid var(--border);border-radius:16px;padding:32px 36px;margin-bottom:22px}
+  .hero h2{border:none;font-size:30px;margin:0 0 10px}
+  .hero p{color:#c7cedb;margin:0 0 6px;max-width:760px;font-size:14.5px}
+  .pill{display:inline-block;font-size:12px;padding:3px 11px;border-radius:20px;margin:4px 5px 0 0;background:rgba(124,77,255,.18);color:#b9a6ff}
+  .searchbar{position:sticky;top:0;z-index:20;background:rgba(13,15,20,.93);backdrop-filter:blur(6px);padding:14px 0 12px;margin-bottom:6px;border-bottom:1px solid var(--border)}
+  .searchbar input{width:100%;padding:12px 16px;font-size:15px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;color:#fff}
+  .searchbar input::placeholder{color:#6b7384}
+  .filterbtns{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .fbtn{font-size:12.5px;padding:5px 12px;border-radius:18px;background:var(--panel2);border:1px solid var(--border);color:var(--muted);cursor:pointer;user-select:none}
+  .fbtn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .count{color:var(--muted);font-size:13px;margin:8px 2px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin-top:14px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .12s,border-color .12s}
+  .card:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .thumb{height:96px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:rgba(255,255,255,.95);position:relative;letter-spacing:.04em;text-align:center;padding:0 10px}
+  .thumb-img{height:150px;background-size:cover;background-position:center;background-color:#000;overflow:hidden}
+  .thumb-img .cimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+  .thumb-img .cimg.img-fail{display:none}
+  .thumb-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:rgba(255,255,255,.95);z-index:0}
+  .thumb-img .play{font-size:34px;color:rgba(255,255,255,.92);text-shadow:0 2px 10px rgba(0,0,0,.8);transition:transform .12s}
+  .card:hover .thumb-img .play{transform:scale(1.25)}
+  .thumb-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.45))}
+  .thumb-img .badge,.thumb-img .vf,.thumb-img .play{z-index:2}
+  .thumb .badge{position:absolute;top:7px;right:7px;font-size:10px;padding:2px 7px;border-radius:11px;background:rgba(0,0,0,.5);color:#fff;font-weight:600}
+  .thumb .vf{position:absolute;top:7px;left:7px;font-size:9.5px;padding:1px 6px;border-radius:10px;font-weight:700}
+  .vf.high{background:rgba(52,211,153,.9);color:#06281c}
+  .vf.mid{background:rgba(251,191,36,.9);color:#3a2c00}
+  .vf.low{background:rgba(248,113,113,.9);color:#3a0c0c}
+  .card .body{padding:12px 14px;flex:1;display:flex;flex-direction:column}
+  .card .title{font-size:14px;font-weight:600;color:#fff;margin:0 0 5px;line-height:1.4}
+  .card .meta{font-size:11.5px;color:var(--muted);margin-bottom:6px}
+  .card .desc{font-size:12px;color:#b6bdcc;flex:1}
+  .card a.go{display:block;text-align:center;padding:8px;background:var(--panel2);color:#cfe3ff;font-size:12.5px;font-weight:600;border-top:1px solid var(--border)}
+  .card a.go:hover{background:var(--accent);color:#fff;text-decoration:none}
+  .alist{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:8px;margin-top:12px}
+  .arow{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:10px 13px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .arow:hover{border-color:var(--accent)}
+  .arow-thumb{position:relative;width:60px;height:40px;flex-shrink:0;border-radius:6px;overflow:hidden;background:#000}
+  .arow-thumb .acimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+  .arow-thumb .acimg.img-fail{display:none}
+  .arow-thumb .arow-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:rgba(255,255,255,.9);z-index:0}
+  .arow .at{font-size:13px;color:#fff;font-weight:500}
+  .arow .as{font-size:11px;color:var(--muted);margin-top:2px}
+  .arow .vf{flex-shrink:0;font-size:9px;padding:1px 6px;border-radius:9px;font-weight:700}
+  .callout{border-radius:10px;padding:13px 17px;margin:14px 0;border-left:4px solid}
+  .c-warn{background:rgba(251,191,36,.08);border-color:var(--warn)}
+  .c-danger{background:rgba(248,113,113,.08);border-color:var(--danger)}
+  .c-info{background:rgba(34,211,238,.08);border-color:var(--accent2)}
+  .c-tip{background:rgba(52,211,153,.08);border-color:var(--ok)}
+  .callout .label{font-weight:700;display:block;margin-bottom:4px}
+  .c-warn .label{color:var(--warn)}.c-danger .label{color:var(--danger)}.c-info .label{color:var(--accent2)}.c-tip .label{color:var(--ok)}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .dot.high{background:var(--ok)}.dot.mid{background:var(--warn)}.dot.low{background:var(--danger)}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+  th,td{border:1px solid var(--border);padding:8px 11px;text-align:left}
+  th{background:var(--panel2);color:#fff}
+  .steps{counter-reset:s;padding:0;list-style:none;margin:14px 0}
+  .steps li{counter-increment:s;position:relative;padding:9px 0 9px 44px;border-bottom:1px solid var(--border)}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+  .hide{display:none!important}
+  /* 原创指南 */
+  .guide{background:var(--panel);border:1px solid var(--border);border-radius:12px;margin:12px 0;overflow:hidden}
+  .guide summary{cursor:pointer;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;background:linear-gradient(135deg,rgba(124,77,255,.12),rgba(34,211,238,.08))}
+  .guide summary::-webkit-details-marker{display:none}
+  .guide summary::before{content:"▸";color:var(--accent);font-size:15px;transition:transform .2s}
+  .guide[open] summary::before{transform:rotate(90deg)}
+  .gtitle{font-weight:700;font-size:15px;flex:1}
+  .gmins{color:var(--muted);font-size:12px;white-space:nowrap}
+  .gsub{padding:12px 16px 0;color:var(--muted);font-size:13px}
+  .gtags{padding:8px 16px 0;display:flex;flex-wrap:wrap;gap:6px}
+  .gtag{font-size:11px;background:var(--panel2);border:1px solid var(--border);border-radius:99px;padding:2px 9px;color:#b9a6ff}
+  .gbody{padding:4px 16px 18px}
+  .gbody h4{margin:18px 0 6px;color:#fff;font-size:14.5px;border-left:3px solid var(--accent);padding-left:9px}
+  .gbody p{margin:8px 0;line-height:1.7;font-size:13.5px}
+  .gbody ul,.gbody ol{margin:8px 0;padding-left:22px;line-height:1.7;font-size:13.5px}
+  .gbody li{margin:4px 0}
+  .gbody code{background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:1px 5px;font-size:12.5px;color:#7fe7d9}
+  .gbody table{font-size:12.5px}
+  footer{border-top:1px solid var(--border);padding-top:18px;margin-top:30px;color:var(--muted);font-size:12.5px}
+  @media(max-width:860px){nav{display:none}main{padding:20px 16px}}
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav id="nav">
+    <h1>VRC 改模资源中心</h1>
+    <p class="sub">134+ 真实资源 · 离线可读</p>
+    <div class="group">开始</div>
+    <a href="#start">上手流程</a>
+    <a href="#unity">Unity 版本(必读)</a>
+    <a href="#tools">工具下载</a>
+    <div class="group">学习</div>
+    <a href="#videos">视频教程</a>
+    <a href="#articles">图文教程</a>
+    <a href="#bili">中文B站视频</a>
+    <a href="#pro">英语实战帖</a>
+    <a href="#reddit">reddit帖</a>
+    <a href="#comm">中文社区</a>
+    <div class="group">资源</div>
+    <a href="#bases">素体(日系)</a>
+    <a href="#furry">素体(兽人/男性)</a>
+    <a href="#clothes">衣装配件</a>
+    <a href="#texture">质感/化妆</a>
+    <a href="#free">免费资源</a>
+    <div class="group">进阶</div>
+    <a href="#advanced">移动/OSC/许可</a>
+    <a href="#tech">细分技术</a>
+    <a href="#world">World 制作</a>
+    <a href="#platform">其他平台素体</a>
+    <a href="#multilang">多语言教程</a>
+    <a href="#optimize">优化/Quest</a>
+    <a href="#trouble">报错排查</a>
+  </nav>
+  <main>
+    <div class="hero">
+      <h2>VRChat 改模资源中心</h2>
+      <p>从环境搭建到上传优化的完整中文资源库。视频经 YouTube 接口核实真实存在;素体/衣装为 Booth 真实商品链接;官方文档逐页核实存活。所有资源带可信度标记。</p>
+      <div>
+        <span class="pill"><span class="dot high"></span>high=已核实</span>
+        <span class="pill"><span class="dot mid"></span>mid=搜索真实返回</span>
+        <span class="pill"><span class="dot low"></span>low=商品号待核实</span>
+      </div>
+    </div>
+
+    <div class="searchbar">
+      <input id="q" type="text" placeholder="搜索资源:poiyomi / selestia / 优化 / quest / 表情 / modular...">
+      <div class="filterbtns" id="filters"></div>
+      <div class="count" id="count"></div>
+    </div>
+
+    <section id="start">
+      <h2>上手流程</h2>
+      <p>改模 = 拿一个基础模型(素体/OriginalBase),换衣服、调材质物理骨骼、加表情开关,上传成自己的 Avatar。最小闭环:</p>
+      <ol class="steps">
+        <li>装 <b>VCC</b>(Creator Companion),它自动装对的 Unity 版本和 SDK</li>
+        <li>VCC 新建 Avatar 项目,装 <b>ModularAvatar</b> + <b>lilToon</b>(衣装常依赖)</li>
+        <li>导入素体 .unitypackage,拖进场景,确认有 VRC Avatar Descriptor</li>
+        <li>导入衣装,用 ModularAvatar 拖到素体上(Setup Outfit)自动适配骨骼</li>
+        <li>调材质(lilToon/Poiyomi)、PhysBone 物理骨骼、表情开关</li>
+        <li>VRChat SDK 面板登录 → Build & Test 本地试穿 → 没问题再 Build & Publish 上传</li>
+      </ol>
+      <div class="callout c-info"><span class="label">账号要求</span>上传 Avatar 需要账号达到 New User 信任等级(约游玩数小时后自动获得)。</div>
+    </section>
+
+    <section id="unity">
+      <h2>Unity 版本(必读)</h2>
+      <div class="callout c-danger"><span class="label">一句话:别手动选 Unity 版本,更别现在上 Unity 6</span>
+        永远让 <b>VCC</b> 决定并安装版本。手动升级会导致上传后内容加载不出来。</div>
+      <p>截至本页编写时,VRChat 官方要求 <b>Unity 2022.3.22f1</b>(SDK 3.6.0+ 起官方支持 2022.3 线)。这个号会变,唯一可信来源是官方页和 VCC 实际安装的版本。</p>
+      <ul>
+        <li>官方版本页:<a href="https://creators.vrchat.com/sdk/upgrade/current-unity-version" target="_blank" rel="noopener noreferrer">creators.vrchat.com/sdk/upgrade/current-unity-version</a></li>
+        <li><b>要换 Unity 6 吗?</b> 目前 VRChat 没公布任何 Unity 6 迁移计划,官方反而明确警告不要自行升级。以后真要换,也是等 VCC 推送、跟着 VCC 迁移,绝不手动改 Unity Hub。</li>
+      </ul>
+    </section>
+
+    <section id="guides"><h2>原创深度指南 · 本站整理撰写 <span class="n" id="n-guides"></span></h2>
+      <p>不是外链——下面是本知识库自行整理、撰写的完整教程长文,正文直接在本页可读。每篇都按"为什么→怎么做→翻车排查"组织,看完能独立操作。</p>
+      <div id="g-guides"></div></section>
+
+    <section id="tools"><h2>工具下载 <span class="n" id="n-tools"></span></h2>
+      <p>优先用 VCC / ALCOM 安装(自动管依赖和版本)。</p><div class="grid" id="g-tools"></div></section>
+    <section id="videos"><h2>视频教程 <span class="n" id="n-videos"></span></h2>
+      <p>下列视频已用 YouTube 接口核实真实存在(标题/频道为真实数据)。在线点开即看。</p><div class="grid" id="g-videos"></div>
+      <h3>搜索入口(永不失效)</h3><div class="grid" id="g-search"></div></section>
+    <section id="articles"><h2>图文教程 <span class="n" id="n-articles"></span></h2><div id="g-articles"></div></section>
+    <section id="comm"><h2>中文社区 <span class="n" id="n-comm"></span></h2>
+      <p>WebSearch 对中文站命中少,这里以已核实的中文文档站为主。</p><div class="alist" id="g-comm"></div></section>
+    <section id="bases"><h2>素体 · 日系 <span class="n" id="n-bases"></span></h2>
+      <div class="callout c-warn"><span class="label">版权与可信度</span>Booth 商品图是作者版权素材,本页只放链接+生成封面,不下载原图。标记为 low 的商品号是搜索返回未逐页核实,点进去以 Booth 实际页面为准,价格可能变动。</div>
+      <div class="grid" id="g-bases"></div></section>
+    <section id="furry"><h2>素体 · 兽人/男性/中性 <span class="n" id="n-furry"></span></h2>
+      <p>提示:Rexouium、Nardoragon 等欧美主流兽人 base 多在 Gumroad/Jinxxy,不在 Booth。</p><div class="grid" id="g-furry"></div></section>
+    <section id="clothes"><h2>衣装 / 配件 <span class="n" id="n-clothes"></span></h2>
+      <div class="callout c-warn"><span class="label">注意</span>衣装多按特定素体制作,买前确认对应你的素体;很多依赖 AvatarTools 或 ModularAvatar 装配。</div>
+      <div class="grid" id="g-clothes"></div></section>
+    <section id="texture"><h2>质感 / 化妆 <span class="n" id="n-texture"></span></h2><div class="grid" id="g-texture"></div></section>
+    <section id="free"><h2>免费资源 <span class="n" id="n-free"></span></h2><div class="grid" id="g-free"></div></section>
+
+    <section id="advanced"><h2>进阶系统 · 移动/OSC/约束/许可 <span class="n" id="n-advanced"></span></h2>
+      <p>移动系统(GoGo Loco)、OSC、Constraints、商用/二次配布许可、新手避雷。官方文档项已逐页核实存活。</p>
+      <div class="alist" id="g-advanced"></div></section>
+
+    <section id="tech"><h2>细分技术 · 头发/粒子/AudioLink/全身追踪 <span class="n" id="n-tech"></span></h2>
+      <p>按具体技术点拆分:头发物理、粒子特效、音频联动、FBT 校准防变形、Contacts 交互、缩放系统。</p>
+      <div class="alist" id="g-tech"></div></section>
+
+    <section id="world"><h2>世界 World / Udon 制作 <span class="n" id="n-world"></span></h2>
+      <p>不止改 avatar——做世界。官方文档全部逐页核实存活;UdonSharp/ClientSim/ProTV 等社区工具。</p>
+      <div class="alist" id="g-world"></div></section>
+
+    <section id="platform"><h2>其他平台素体 · Gumroad/Jinxxy/Sketchfab <span class="n" id="n-platform"></span></h2>
+      <p>Booth 之外的生态:欧美兽人 base(Rexouium/Nardoragon 等)多在 Gumroad/Jinxxy;Sketchfab 有免费 VRChat-ready 模型。</p>
+      <div class="grid" id="g-platform"></div></section>
+
+    <section id="multilang"><h2>多语言教程 · 韩/法/德/西/俄/日/意 <span class="n" id="n-multilang"></span></h2>
+      <p>全世界的改模教程:韩国 arca.live 社区、官方 wiki 多语版、日语 note 深度专栏。</p>
+      <div class="alist" id="g-multilang"></div></section>
+
+    <section id="bili"><h2>中文 B站视频 · BV 直链 <span class="n" id="n-bili"></span></h2>
+      <p>每条 BV 号都用 curl + B站 API 双重核实存活(返回 code:0、标题逐字匹配)。含专题:[着色器Poiyomi]/[面捕]/[动骨PhysBone]/[表情]/[穿衣]——搜索框输 poiyomi/面捕/physbone 可直达。点开即看,需联网。</p>
+      <div class="grid" id="g-bili"></div></section>
+
+    <section id="pro"><h2>英语社区进阶实战帖 <span class="n" id="n-pro"></span></h2>
+      <p>ask.vrchat 官方论坛精华 + note/HackMD/vrclibrary 实战。(reddit 在本环境抓取受阻,未编造帖子,改收同等价值的真实社区源。)</p>
+      <div class="alist" id="g-pro"></div></section>
+
+    <section id="reddit"><h2>reddit r/VRChat 真实帖 <span class="n" id="n-reddit"></span></h2>
+      <p>reddit 直连/JSON 在本环境全被反爬封,最终经 <b>archive.org wayback 快照</b>抽出真实永久链(shreddit HTML 逐字提取)。坦白:reddit top 流多为社区讨论/工具帖,非系统教程,这里只收对改模有用的(FBT 工具/性能/避坑)。</p>
+      <div class="alist" id="g-reddit"></div></section>
+
+    <section id="optimize"><h2>优化 / Quest 适配</h2>
+      <table><tr><th>主题</th><th>要点</th></tr>
+        <tr><td>性能评级</td><td>5 级(Excellent~Very Poor)。PC/移动端各有三角面、材质、PhysBone、纹理内存上限。<a href="https://creators.vrchat.com/avatars/avatar-performance-ranking-system/" target="_blank" rel="noopener noreferrer">官方表(已核实)</a></td></tr>
+        <tr><td>Quest 适配</td><td>用 <b>VRCQuestTools</b> 一键转换;PC/Quest 上传同一 blueprint,骨架必须一致。<a href="https://creators.vrchat.com/platforms/android/cross-platform-setup/" target="_blank" rel="noopener noreferrer">跨平台(已核实)</a></td></tr>
+        <tr><td>减面/减材质</td><td>合并为 1 个 SkinnedMesh、减材质槽、纹理图集、控 VRAM。<a href="https://creators.vrchat.com/avatars/avatar-optimizing-tips/" target="_blank" rel="noopener noreferrer">官方优化建议(已核实)</a></td></tr>
+        <tr><td>物理骨骼</td><td>弃用 Dynamic Bones 改 PhysBones;Android 上限 8 组件/64 transform/16 碰撞器。</td></tr>
+        <tr><td>Fallback</td><td>自定义 fallback 需全平台构建 + Good 及以上。<a href="https://docs.vrchat.com/docs/avatar-fallback-system" target="_blank" rel="noopener noreferrer">官方(已核实)</a></td></tr>
+      </table></section>
+
+    <section id="trouble"><h2>常见报错排查</h2>
+      <table><tr><th>现象</th><th>排查</th></tr>
+        <tr><td>变成 error avatar</td><td>纹理过大/材质过多/缺 shader;先看 SDK 面板的 build 报告</td></tr>
+        <tr><td>missing script</td><td>导入的 unitypackage 缺依赖,确认装了对应 SDK/MA/着色器版本</td></tr>
+        <tr><td>blueprint ID 被清空</td><td>试图加载非自己拥有的 avatar;新建或重置 Pipeline Manager 的 blueprint</td></tr>
+        <tr><td>shader 全粉/全白</td><td>缺着色器,导入 lilToon/Poiyomi 后重新指定材质</td></tr>
+        <tr><td>衣装穿上错位</td><td>骨架命名不匹配;用 MA Setup Outfit 或检查 Armature 层级</td></tr>
+      </table>
+      <p style="margin-top:12px">报错大全:<a href="https://www.vrcmods.com/blog/how-to-fix-vrchat-avatar-errors-in-unity-sdk3-error-mega-guide" target="_blank" rel="noopener noreferrer">SDK3 Error Mega Guide</a> · 官方支持:<a href="https://help.vrchat.com/hc/en-us/articles/360062658873" target="_blank" rel="noopener noreferrer">Troubleshooting</a></p></section>
+
+    <footer id="foot"></footer>
+  </main>
+</div>
+<script src="data.js"></script>
+<script src="covers.js"></script>
+<script src="guides.js"></script>
+<script>
+const PALETTE=["#7c4dff,#22d3ee","#ff5fa2,#7c4dff","#22d3ee,#34d399","#fbbf24,#ff5fa2","#34d399,#22d3ee","#f87171,#fbbf24","#7c4dff,#ff5fa2","#22d3ee,#7c4dff"];
+let pi=0;
+const grad=()=>{const g=PALETTE[pi%PALETTE.length];pi++;return `linear-gradient(135deg,${g})`;};
+const initial=s=>s.replace(/[^A-Za-z一-龥]/g,"").slice(0,2).toUpperCase()||"VR";
+const vfLabel={high:"已核实",mid:"真实返回",low:"待核实"};
+
+const COVERS=(typeof window!=="undefined"&&window.COVERS)||{};
+// 封面图:优先传入thumb,否则查COVERS表;B站/booth等图片用no-referrer绕防盗链
+function imgTag(src,cls,extra){
+  return `<img class="${cls}" src="${src}" loading="lazy" referrerpolicy="no-referrer" onerror="this.classList.add('img-fail')" ${extra||""}>`;
+}
+function card({title,meta,desc,url,badge,v,big,thumb}){
+  const vf=v?`<span class="vf ${v}">${vfLabel[v]}</span>`:"";
+  const bd=badge?`<span class="badge">${badge}</span>`:"";
+  const cover=thumb||COVERS[url];
+  const th=cover
+    ? `<div class="thumb thumb-img">${imgTag(cover,"cimg")}<span class="thumb-ph" style="background:${grad()}"><span>${big||initial(title)}</span></span>${vf}${bd}<span class="play">▶</span></div>`
+    : `<div class="thumb" style="background:${grad()}">${vf}${bd}<span>${big||initial(title)}</span></div>`;
+  return `<div class="card" data-s="${(title+' '+(meta||'')+' '+(desc||'')+' '+(badge||'')).toLowerCase()}">
+    ${th}
+    <div class="body"><p class="title">${title}</p>${meta?`<p class="meta">${meta}</p>`:""}${desc?`<p class="desc">${desc}</p>`:""}</div>
+    <a class="go" href="${url}" target="_blank" rel="noopener noreferrer">打开 ↗</a></div>`;
+}
+// 列表行:有封面则加左侧小缩略图
+function arowThumb(url,title){
+  const cover=COVERS[url];
+  if(!cover)return "";
+  return `<div class="arow-thumb">${imgTag(cover,"acimg")}<span class="arow-ph" style="background:${grad()}">${initial(title)}</span></div>`;
+}
+const R=(id,html)=>document.getElementById(id).innerHTML=html;
+const setN=(id,n)=>document.getElementById(id).textContent=`(${n})`;
+
+R("g-tools",TOOLS.map(t=>card({title:t.n,meta:t.tag,desc:t.d,url:t.url,badge:t.tag,v:t.v})).join(""));setN("n-tools",TOOLS.length);
+// 原创深度指南:可展开长文
+if(typeof GUIDES!=="undefined"){
+  // 主线总路线(zero-to-upload)置顶默认展开,其余按学习顺序
+  const GORDER=["zero-to-upload","rig-humanoid","ma-complete","ma-advanced","vrcfury","physbone-tuning","dynamicbone-to-physbone","expression-gesture","viseme-eyelook","blendshape-basics","face-customization","shape-changer-toggle","playable-layers","blendtree-animation","parameter-memory","expression-menu","shader-intro","poiyomi-features","liltoon-vs-poiyomi","pbr-realistic-material","transparency-render-queue","emission-glow","uv-texture-basics","blender-workflow","custom-animation-emote","where-to-get-avatars","texture-recolor","color-customization","quest-optimize","performance-safety","mesh-material-merge","particle-effects","fallback-impostor","fbt-calibration","constraints","avatar-scaling","gogoloco","osc-control","contacts","contacts-advanced","pickup-props","audiolink","face-eye-tracking","avatar-audio","viewpoint-thumbnail","editor-debug-tools","local-testing","sdk-upload-panel","blueprint-id-update","error-troubleshooting","ingame-avatar-issues","avatar-filesize","vroid-workflow","avatar-safety-piracy","cross-source-import","sps-dps-intro","trust-rank-system","write-defaults","kitbash-basemodel","license-redistribution"];
+  const gsorted=[...GUIDES].sort((a,b)=>{const ia=GORDER.indexOf(a.id),ib=GORDER.indexOf(b.id);return (ia<0?99:ia)-(ib<0?99:ib);});
+  R("g-guides",gsorted.map((g,i)=>{
+    const tags=(g.tags||[]).map(t=>`<span class="gtag">${t}</span>`).join("");
+    return `<details class="guide" ${i===0?"open":""} data-s="${(g.title+' '+g.sub+' '+(g.tags||[]).join(' ')).toLowerCase()}">
+      <summary><span class="gtitle">${g.title}</span><span class="gmins">约 ${g.mins} 分钟</span></summary>
+      <p class="gsub">${g.sub}</p><div class="gtags">${tags}</div>
+      <div class="gbody">${g.body}</div></details>`;
+  }).join(""));
+  setN("n-guides",GUIDES.length);
+}
+R("g-videos",VIDEOS.map(x=>card({title:x.t,meta:"▶ "+x.ch,desc:x.tag,url:x.url,badge:"YouTube",v:x.v,thumb:x.id?`https://i.ytimg.com/vi/${x.id}/hqdefault.jpg`:null})).join(""));setN("n-videos",VIDEOS.length);
+R("g-search",SEARCH.map(s=>card({title:s.t,url:s.url,badge:"搜索",big:"搜"})).join(""));
+R("g-bases",BASES.map(b=>card({title:b.n,meta:b.author+(b.price?" · "+b.price:""),desc:b.note,url:b.url,badge:"Booth",v:b.v})).join(""));setN("n-bases",BASES.length);
+R("g-furry",FURRY.map(b=>card({title:b.n,meta:b.author+(b.price?" · "+b.price:""),desc:b.note,url:b.url,badge:b.style,v:b.v})).join(""));setN("n-furry",FURRY.length);
+R("g-clothes",CLOTHES.map(c=>card({title:c.n,meta:c.author+(c.price?" · "+c.price:""),desc:c.note,url:c.url,badge:"衣装",v:c.v})).join(""));setN("n-clothes",CLOTHES.length);
+R("g-texture",TEXTURE.map(c=>card({title:c.n,meta:c.author,desc:c.note,url:c.url,badge:"质感",v:c.v})).join(""));setN("n-texture",TEXTURE.length);
+R("g-free",FREE.map(c=>card({title:c.n,meta:c.author+(c.price?" · "+c.price:""),desc:c.note,url:c.url,badge:"免费",v:c.v})).join(""));setN("n-free",FREE.length);
+
+// articles grouped
+let ah="";let acount=0;
+ARTICLES.forEach(g=>{ah+=`<h3>${g.g}</h3><div class="alist">`+g.items.map(a=>{acount++;return `<a class="arow" href="${a.url}" target="_blank" rel="noopener noreferrer" data-s="${(a.t+' '+a.src).toLowerCase()}">${arowThumb(a.url,a.t)}<div><div class="at">${a.t}</div><div class="as">${a.src}</div></div><span class="vf ${a.v}">${vfLabel[a.v]}</span></a>`;}).join("")+`</div>`;});
+R("g-articles",ah);setN("n-articles",acount);
+R("g-comm",COMM.map(c=>`<a class="arow" href="${c.url}" target="_blank" rel="noopener noreferrer" data-s="${(c.n+' '+c.note).toLowerCase()}">${arowThumb(c.url,c.n)}<div><div class="at">${c.n}</div><div class="as">${c.note}</div></div><span class="vf ${c.v}">${vfLabel[c.v]}</span></a>`).join(""));setN("n-comm",COMM.length);
+R("g-advanced",ADVANCED.map(a=>`<a class="arow" href="${a.url}" target="_blank" rel="noopener noreferrer" data-s="${(a.n+' '+a.note+' '+a.topic).toLowerCase()}">${arowThumb(a.url,a.n)}<div><div class="at"><b style="color:#b9a6ff">[${a.topic}]</b> ${a.n}</div><div class="as">${a.a} · ${a.note}</div></div><span class="vf ${a.v}">${vfLabel[a.v]}</span></a>`).join(""));setN("n-advanced",ADVANCED.length);
+R("g-tech",TECH.map(a=>`<a class="arow" href="${a.url}" target="_blank" rel="noopener noreferrer" data-s="${(a.n+' '+a.note+' '+a.topic).toLowerCase()}">${arowThumb(a.url,a.n)}<div><div class="at"><b style="color:#7fe7d9">[${a.topic}]</b> ${a.n}</div><div class="as">${a.a} · ${a.note}</div></div><span class="vf ${a.v}">${vfLabel[a.v]}</span></a>`).join(""));setN("n-tech",TECH.length);
+R("g-world",WORLD.map(a=>`<a class="arow" href="${a.url}" target="_blank" rel="noopener noreferrer" data-s="${(a.n+' '+a.note).toLowerCase()}">${arowThumb(a.url,a.n)}<div><div class="at">${a.n}</div><div class="as">${a.a} · ${a.note}</div></div><span class="vf ${a.v}">${vfLabel[a.v]}</span></a>`).join(""));setN("n-world",WORLD.length);
+R("g-platform",PLATFORM.map(p=>card({title:p.n,meta:p.a+" · "+p.plat+(p.price&&p.price!=="-"?" · "+p.price:""),desc:p.note,url:p.url,badge:p.plat,v:p.v})).join(""));setN("n-platform",PLATFORM.length);
+R("g-multilang",MULTILANG.map(a=>`<a class="arow" href="${a.url}" target="_blank" rel="noopener noreferrer" data-s="${(a.n+' '+a.note+' '+a.lang+' '+a.a).toLowerCase()}">${arowThumb(a.url,a.n)}<div><div class="at"><b style="color:#ff9ec4">[${a.lang}]</b> ${a.n}</div><div class="as">${a.a} · ${a.note}</div></div><span class="vf ${a.v}">${vfLabel[a.v]}</span></a>`).join(""));setN("n-multilang",MULTILANG.length);
+R("g-bili",BILI.map(b=>card({title:b.n,desc:b.note,url:b.url,badge:b.url.includes("search.")?"搜索":"B站",v:b.v,big:b.url.includes("search.")?"搜":"▶"})).join(""));setN("n-bili",BILI.length);
+R("g-pro",PRO.map(a=>`<a class="arow" href="${a.url}" target="_blank" rel="noopener noreferrer" data-s="${(a.n+' '+a.note+' '+a.topic).toLowerCase()}">${arowThumb(a.url,a.n)}<div><div class="at"><b style="color:#ffcf7a">[${a.topic}]</b> ${a.n}</div><div class="as">${a.a} · ${a.note}</div></div><span class="vf ${a.v}">${vfLabel[a.v]}</span></a>`).join(""));setN("n-pro",PRO.length);
+R("g-reddit",REDDIT.map(a=>`<a class="arow" href="${a.url}" target="_blank" rel="noopener noreferrer" data-s="${(a.n+' '+a.note+' '+a.topic).toLowerCase()}">${arowThumb(a.url,a.n)}<div><div class="at"><b style="color:#ff7a59">[${a.topic}]</b> ${a.n}</div><div class="as">r/VRChat · ${a.note}</div></div><span class="vf ${a.v}">${vfLabel[a.v]}</span></a>`).join(""));setN("n-reddit",REDDIT.length);
+
+// 搜索 + 筛选
+const SECMAP=[["all","全部"],["guides","原创指南"],["tools","工具"],["videos","视频"],["bili","B站"],["articles","图文"],["pro","实战帖"],["reddit","reddit"],["advanced","进阶"],["tech","细分技术"],["world","World"],["platform","其他平台"],["multilang","多语言"],["comm","中文"],["bases","素体"],["furry","兽人"],["clothes","衣装"],["texture","质感"],["free","免费"],["optimize","优化"],["trouble","排错"]];
+let curFilter="all";
+document.getElementById("filters").innerHTML=SECMAP.map(([k,v])=>`<span class="fbtn${k==="all"?" active":""}" data-f="${k}">${v}</span>`).join("");
+const q=document.getElementById("q"),countEl=document.getElementById("count");
+function apply(){
+  const kw=q.value.trim().toLowerCase();let shown=0;
+  document.querySelectorAll("main > section").forEach(sec=>{
+    const inF=curFilter==="all"||sec.id===curFilter;
+    const items=sec.querySelectorAll(".card,.arow,.guide");
+    let secHas=false;
+    items.forEach(c=>{
+      const txt=c.getAttribute("data-s")||c.textContent.toLowerCase();
+      const ok=inF&&(!kw||txt.includes(kw));
+      c.classList.toggle("hide",!ok);
+      if(ok){shown++;secHas=true;}
+    });
+    if(items.length===0){ sec.classList.toggle("hide",!(curFilter==="all"&&!kw)); }
+    else{ sec.classList.toggle("hide",!secHas); }
+  });
+  countEl.textContent=(q.value||curFilter!=="all")?`匹配 ${shown} 条`:"";
+}
+q.addEventListener("input",apply);
+document.getElementById("filters").addEventListener("click",e=>{
+  if(!e.target.dataset.f)return;
+  curFilter=e.target.dataset.f;
+  document.querySelectorAll(".fbtn").forEach(b=>b.classList.toggle("active",b===e.target));
+  apply();
+});
+const navObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id));}}),{rootMargin:"-15% 0px -75% 0px"});
+document.querySelectorAll("main > section").forEach(s=>navObs.observe(s));
+const total=VIDEOS.length+SEARCH.length+TOOLS.length+acount+BASES.length+FURRY.length+CLOTHES.length+TEXTURE.length+FREE.length+COMM.length+ADVANCED.length+TECH.length+WORLD.length+PLATFORM.length+MULTILANG.length+BILI.length+PRO.length+REDDIT.length;
+document.getElementById("foot").innerHTML=`共收录 <b>${total}</b> 条资源 · 工具 ${TOOLS.length} · 视频 ${VIDEOS.length} · B站 ${BILI.length} · 图文 ${acount} · 实战帖 ${PRO.length} · reddit ${REDDIT.length} · 进阶 ${ADVANCED.length} · 细分技术 ${TECH.length} · World ${WORLD.length} · 多语言 ${MULTILANG.length} · 素体 ${BASES.length+FURRY.length+PLATFORM.length} · 衣装 ${CLOTHES.length} · 免费 ${FREE.length}。<br>全部联网真实检索并核验:旧链 curl 实测、B站 BV 全部经 curl+API 双核实(code:0、标题逐字匹配,273 条已全量核验无一死链)、YouTube 经接口+缩略图核实、官方文档逐页核实。reddit 直连全被反爬封,最终经 archive.org wayback 快照抽真实永久链(非教程多为社区讨论,已坦白标注)。Booth 图为版权素材只放链接+生成封面。版本/价格以官方页为准,离线可读、外链需联网。`;
+</script>
+</body>
+</html>

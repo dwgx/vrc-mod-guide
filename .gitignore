@@ -1,0 +1,14 @@
+# 抓取临时产物
+_cdx_*.txt
+_allbv.txt
+_allreddit.txt
+_bili_log.txt
+_reddit_log.txt
+_bili_fail.txt
+_rtest*
+_miss.txt
+.bvtmp/
+
+# 系统
+Thumbs.db
+.DS_Store
