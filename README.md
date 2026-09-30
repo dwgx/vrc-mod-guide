@@ -1,5 +1,24 @@
 # VRChat 改模资源库 / VRChat Modding Resource Hub
 
+<!-- dwgx-banner:BEGIN -->
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner.svg?t=3a79af7ec6e7" />
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/banner-light.svg?t=3a79af7ec6e7" />
+  <img src="docs/assets/banner.svg?t=3a79af7ec6e7" width="100%" alt="vrc-mod-guide — VRChat 改模资源库 · 中文教程 / 素体衣装 / 视频，含 B站与 reddit 本地存档" />
+</picture>
+
+<br/>
+
+JavaScript · none · ★4
+
+[issues](https://github.com/dwgx/vrc-mod-guide/issues)
+
+</div>
+<!-- dwgx-banner:END -->
+
+
 > 中文 VRChat 改模资源一站聚合 —— 拿 AI 跑了两天自己爬出来的东西。
 >
 > A one-stop Chinese-language resource hub for VRChat avatar/model modding.

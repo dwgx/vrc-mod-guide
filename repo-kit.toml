@@ -1,0 +1,13 @@
+# repo-kit · 本仓库的 banner 规格
+# 改这个文件，workflow 会重新渲染 docs/assets/banner*.svg 与 README 区块
+# 生成器：https://github.com/dwgx/DWGX/tree/main/repo-kit
+owner = "dwgx"
+
+[[repo]]
+name = "vrc-mod-guide"
+style = "card"
+tagline = "VRChat 改模资源库 · 中文教程 / 素体衣装 / 视频，含 B站与 reddit 本地存档"
+install = "python -m http.server 8000"
+lang = "JavaScript"
+license = "none"
+links = [{ label = "issues", url = "https://github.com/dwgx/vrc-mod-guide/issues" }]
