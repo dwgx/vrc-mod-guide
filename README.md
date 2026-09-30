@@ -4,9 +4,9 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner.svg?t=3a79af7ec6e7" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/banner-light.svg?t=3a79af7ec6e7" />
-  <img src="docs/assets/banner.svg?t=3a79af7ec6e7" width="100%" alt="vrc-mod-guide — VRChat 改模资源库 · 中文教程 / 素体衣装 / 视频，含 B站与 reddit 本地存档" />
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner.svg?t=ad58d1fc3eb0" />
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/banner-light.svg?t=ad58d1fc3eb0" />
+  <img src="docs/assets/banner.svg?t=ad58d1fc3eb0" width="100%" alt="vrc-mod-guide — VRChat 改模资源库 · 中文教程 / 素体衣装 / 视频，含 B站与 reddit 本地存档" />
 </picture>
 
 <br/>
